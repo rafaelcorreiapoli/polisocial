@@ -1,0 +1,108 @@
+# depslib dependency file v1.0
+1441047419 source:/home/rafa93br/c++/codeblocks/polisocial/PoliSocial/main.cpp
+	<iostream>
+	<string>
+	"Pessoa.h"
+
+1441047506 source:/home/rafa93br/c++/codeblocks/polisocial/PoliSocial/src/Elemento.cpp
+	"Elemento.h"
+
+1441042455 /home/rafa93br/c++/codeblocks/polisocial/PoliSocial/include/Elemento.h
+	<cstddef>
+	"Mensagem.h"
+
+1441047534 source:/home/rafa93br/c++/codeblocks/polisocial/PoliSocial/src/ListaDeMensagens.cpp
+	"ListaDeMensagens.h"
+	"Mensagem.h"
+
+1441047559 /home/rafa93br/c++/codeblocks/polisocial/PoliSocial/include/ListaDeMensagens.h
+	"Elemento.h"
+	"Mensagem.h"
+	<iostream>
+
+1441047513 source:/home/rafa93br/c++/codeblocks/polisocial/PoliSocial/src/Mensagem.cpp
+	"Mensagem.h"
+
+1441045709 /home/rafa93br/c++/codeblocks/polisocial/PoliSocial/include/Mensagem.h
+	<string>
+
+1441047541 source:/home/rafa93br/c++/codeblocks/polisocial/PoliSocial/src/Pessoa.cpp
+	"Pessoa.h"
+	<iostream>
+
+1441044598 /home/rafa93br/c++/codeblocks/polisocial/PoliSocial/include/Pessoa.h
+	"Mensagem.h"
+	"ListaDeMensagens.h"
+	<string>
+
+1440975426 source:/home/rafa93br/c++/codeblocks/polisocial/PoliSocial/pessoa.cpp
+	<string>
+	"Pessoa.h"
+
+1448260190 source:/home/rafa93br/c++/PoliSocial/main.cpp
+	<iostream>
+	<string>
+	<typeinfo>
+	"Pessoa.h"
+	"Departamento.h"
+	"Functions.h"
+
+1448242575 /home/rafa93br/c++/PoliSocial/include/Pessoa.h
+	"Mensagem.h"
+	"ListaDeMensagens.h"
+	"Perfil.h"
+	<string>
+
+1448259060 /home/rafa93br/c++/PoliSocial/include/Mensagem.h
+	<string>
+
+1441047559 /home/rafa93br/c++/PoliSocial/include/ListaDeMensagens.h
+	"Elemento.h"
+	"Mensagem.h"
+	<iostream>
+
+1441042455 /home/rafa93br/c++/PoliSocial/include/Elemento.h
+	<cstddef>
+	"Mensagem.h"
+
+1441047506 source:/home/rafa93br/c++/PoliSocial/src/Elemento.cpp
+	"Elemento.h"
+
+1448258668 source:/home/rafa93br/c++/PoliSocial/src/ListaDeMensagens.cpp
+	"ListaDeMensagens.h"
+	"Mensagem.h"
+
+1448258382 source:/home/rafa93br/c++/PoliSocial/src/Mensagem.cpp
+	"Mensagem.h"
+
+1448260660 source:/home/rafa93br/c++/PoliSocial/src/Pessoa.cpp
+	"Pessoa.h"
+	"Functions.h"
+	<iostream>
+	<sstream>
+
+1448242802 /home/rafa93br/c++/PoliSocial/include/Perfil.h
+	<string>
+	"Mensagem.h"
+	"ListaDeMensagens.h"
+
+1448260723 source:/home/rafa93br/c++/PoliSocial/src/Departamento.cpp
+	"Departamento.h"
+	"Pessoa.h"
+	<string>
+	<sstream>
+
+1448247214 /home/rafa93br/c++/PoliSocial/include/Departamento.h
+	<string>
+	"Perfil.h"
+	"Pessoa.h"
+
+1448258495 source:/home/rafa93br/c++/PoliSocial/src/Perfil.cpp
+	"Perfil.h"
+
+1448259842 /home/rafa93br/c++/PoliSocial/include/Functions.h
+	<string>
+	"Perfil.h"
+	"Pessoa.h"
+	"Departamento.h"
+
