@@ -34,13 +34,14 @@ const int CMD_QUIT = 0;
 //  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-Perfil* perfis[10];
+//Perfil* perfis[10];
 
 int route = 0;
 int cmd;
-int totalPerfis = 0;
+//int totalPerfis = 0;
 int currentUser;
 
+vector<Perfil*>* perfis = new vector<Perfil*>;
 
 // FUNCOES DE APOIO-------------------------------------------------------
 bool ehPessoa(Perfil *perfil){
@@ -55,15 +56,28 @@ bool ehPerfil(Perfil *perfil) {
     return (dynamic_cast<Perfil*>(perfil) != NULL);
 }
 
+
 int printPessoas(){
+    vector<Perfil*>::iterator it;
+    int i = 0;
+    for (it = perfis->begin(); it != perfis->end(); it++){
+        if (ehPessoa(*it)){
+            cout << it - perfis->begin() + 1 << ") " << (*it)->getNome() << endl;
+        }
+    }
+
+    /*
     int i;
     for (i=0; i < totalPerfis; i++){
         if (ehPessoa(perfis[i])){
             cout << i+1 << ") " << perfis[i]->getNome() << endl;
         }
     }
+    */
 }
 
+
+/*
 int printDepartamentos(){
     int i;
     for (i=0; i < totalPerfis; i++){
@@ -72,13 +86,16 @@ int printDepartamentos(){
         }
     }
 }
+*/
 
 int printPerfis(){
-    int i;
-    for (i = 0; i < totalPerfis; i++){
-        cout << i+1 << ") " << perfis[i]->getNome() << endl;
+    vector<Perfil*>::iterator it;
+    int i = 0;
+    for (it = perfis->begin(); it != perfis->end(); it++){
+        cout << it - perfis->begin() + 1 << ") " << (*it)->getNome() << endl;
     }
 }
+
 //----------_FIM FUNCOES DE APOIO-----------------------------------------
 int main()
 {
@@ -86,7 +103,7 @@ int main()
         switch(route){
             case (ROUTE_MAIN):{ // TELA PRINCIPAL ---------------------------
                 //OUTPUT
-                cout << "PoliSocial [" << totalPerfis << "] perfis cadastrados" << endl;
+                cout << "PoliSocial [" << perfis->size() << "] perfis cadastrados" << endl;
                 cout << "1) Cadastrar Pessoa" << endl;
                 cout << "2) Cadastrar Departamento" << endl;
                 cout << "3) Logar como Perfil" << endl;
@@ -116,7 +133,8 @@ int main()
 
                 if (opt != 0){
                     opt--;
-                    if (ehPessoa(perfis[opt]) || ehDepartamento(perfis[opt])){
+
+                    if (ehPessoa(perfis->at(opt)) || ehDepartamento(perfis->at(opt))){
                         route = ROUTE_PROFILE;
                         currentUser = opt;
                     }else {
@@ -142,8 +160,9 @@ int main()
                 cout << "Pessoa cadastrada com sucesso!" << endl;
 
                 //pessoas[totalPessoas] =
-                perfis[totalPerfis] = new Pessoa(nome, dataDeNascimento, pais);
-                totalPerfis++;
+                //perfis[totalPerfis] = new Pessoa(nome, dataDeNascimento, pais);
+                perfis->push_back(new Pessoa(nome, dataDeNascimento, pais));
+                //totalPerfis++;
                 //totalPessoas++;
 
                 route = ROUTE_MAIN;
@@ -167,10 +186,9 @@ int main()
                 if (responsavelId != 0) {
                     responsavelId--;
 
-                    if (ehPessoa(perfis[responsavelId])){
-                        responsavel = dynamic_cast<Pessoa *>(perfis[responsavelId]);
-                        perfis[totalPerfis] = new Departamento(nome, site, responsavel);
-                        totalPerfis++;
+                    if ( ehPessoa( perfis->at(responsavelId))){
+                        responsavel = dynamic_cast<Pessoa *>(perfis->at(responsavelId));
+                        perfis->push_back(new Departamento(nome, site, responsavel));
                     }else {
                         cout << "Pessoa invalida" << endl;
                     }
@@ -182,17 +200,17 @@ int main()
             break;}// ----------------FIM REGISTRAR DEPARTAMENTO-----------------------------------------------
             case (ROUTE_PROFILE):{ // VER PERFIL -----------------------------------------------
                 int opt;
-                Perfil* perfilLogado = perfis[currentUser];
+                Perfil* perfilLogado = perfis->at(currentUser);
 
-                if (ehPessoa(perfis[currentUser])) {
-                    Pessoa* perfilLogado = dynamic_cast<Pessoa *>(perfis[currentUser]);
+                if (ehPessoa(perfis->at(currentUser))) {
+                    Pessoa* perfilLogado = dynamic_cast<Pessoa *>(perfis->at(currentUser));
                     cout << "------------" << endl;
                     cout << "Pessoa: " << perfilLogado->getNome() << endl;
                     cout << perfilLogado->getDataDeNascimento() << " " << perfilLogado->getPais() << endl;
                     cout << "------------" << endl;
 
                     cout << "Contatos: " << endl;
-                    perfilLogado->verContatos();
+                    //perfilLogado->verContatos();
 
                     cout << "1) Ver mensagens enviadas" << endl;
                     cout << "2) Ver mensagens recebidas" << endl;
@@ -201,15 +219,15 @@ int main()
                     cout << "5) Adicionar contato" << endl;
                     cout << "0) Logoff" << endl;
 
-                }else if (ehDepartamento(perfis[currentUser])) {
-                    Departamento* perfilLogado = dynamic_cast<Departamento *>(perfis[currentUser]);
+                }else if (ehDepartamento(perfis->at(currentUser))) {
+                    Departamento* perfilLogado = dynamic_cast<Departamento *>(perfis->at(currentUser));
                     cout << "------------" << endl;
                     cout << "Departamento: " << perfilLogado->getNome() << endl;
                     cout << "Responsavel: " << perfilLogado->getResponsavel()->getNome() << endl;
                     cout << "------------" << endl;
 
                     cout << "Contatos: " << endl;
-                    perfilLogado->verContatos();
+                    //perfilLogado->verContatos();
 
                     cout << "------------" << endl;
                     cout << "1) Ver mensagens enviadas" << endl;
@@ -249,7 +267,7 @@ int main()
                 }
             break;} // ----------------FIM VER PERFIL------------------------------------------------
             case (ROUTE_ADD_CONTACT):{  // ADICIONAR CONTATO -----------------------------------------------
-                Pessoa* perfilLogado = dynamic_cast<Pessoa *>(perfis[currentUser]);
+                Pessoa* perfilLogado = dynamic_cast<Pessoa *>(perfis->at(currentUser));
                 int contato;
                 cout << "Adicionar contato" << endl;
                 printPerfis();
@@ -257,9 +275,9 @@ int main()
 
                 if (contato != 0){
                     contato--;
-                    if (ehPerfil(perfis[contato])){
-                        perfilLogado->adiciona(perfis[contato]);
-                        cout << perfilLogado->getNome() << " conectado a " << perfis[contato]->getNome() << endl;
+                    if (ehPerfil(perfis->at(contato))){
+                        perfilLogado->adiciona(perfis->at(contato));
+                        cout << perfilLogado->getNome() << " conectado a " << perfis->at(contato)->getNome() << endl;
                         route = ROUTE_PROFILE;
                     }else {
                         cout << "Perfil invalido";
@@ -271,7 +289,7 @@ int main()
             case (ROUTE_SENT_MESSAGES):{ // VER MENSAGENS ENVIADAS ------------------------------------------
                 cout << "Mensagens Enviadas" << endl;
                 cout << "------------------" << endl;
-                Perfil* perfilLogado = perfis[currentUser];
+                Perfil* perfilLogado = perfis->at(currentUser);
                 perfilLogado->getMensagensEnviadas()->imprime();
                 route = ROUTE_PROFILE;
                 //pessoas[currentUser]->getMensagensEnviadas()->imprime();
@@ -279,13 +297,13 @@ int main()
             break;} // ----------------FIM VER MENSAGENS ENVIADAS------------------------------------------------
             case (ROUTE_SEND_MESSAGE):{ // ENVIAR MENSAGEM ------------------------------------------
                 //Pessoa enviando mensagem
-                if (ehPessoa(perfis[currentUser])) {
+                if (ehPessoa(perfis->at(currentUser))) {
                     int privada;
                     cout << "A mensagem é privada? (0 - nao, 1 - sim)?" << endl;
                     cin >> privada;
 
                     if (!privada) {
-                        Perfil* perfilLogado = perfis[currentUser];
+                        Perfil* perfilLogado = perfis->at(currentUser);
                         int podeSerCurtida;
                         string msg;
 
@@ -299,7 +317,7 @@ int main()
                         perfilLogado->envia(msg, podeSerCurtida);
                         cout << "Mensagem enviada a todos os contatos";
                     }else {
-                        Pessoa* perfilLogado = dynamic_cast<Pessoa *>(perfis[currentUser]);
+                        Pessoa* perfilLogado = dynamic_cast<Pessoa *>(perfis->at(currentUser));
                         string msg;
                         int destinatario;
 
@@ -314,15 +332,15 @@ int main()
                             cin.ignore(100, '\n');
                             getline(cin, msg);
 
-                            perfilLogado->envia(msg, perfis[destinatario]);
-                            cout << "Mensagem enviada a " << perfis[destinatario]->getNome() << endl;
+                            perfilLogado->envia(msg, perfis->at(destinatario));
+                            cout << "Mensagem enviada a " << perfis->at(destinatario)->getNome() << endl;
                         }else {
                             route = ROUTE_PROFILE;
                         }
 
                     }
-                }else if (ehDepartamento(perfis[currentUser])){ //Departamento enviando mensagem
-                    Perfil* perfilLogado = perfis[currentUser];
+                }else if (ehDepartamento(perfis->at(currentUser))){ //Departamento enviando mensagem
+                    Perfil* perfilLogado = perfis->at(currentUser);
                     int podeSerCurtida;
                     string msg;
 
@@ -342,7 +360,7 @@ int main()
             break;} // ------------------- FIM ENVIAR MENSAGEM ------------------------------------------
             case (ROUTE_RECEIVED_MESSAGES):{ // MENSAGENS RECEBIDAS ------------------------------------------
                 int opt;
-                Perfil* perfilLogado = perfis[currentUser];
+                Perfil* perfilLogado = perfis->at(currentUser);
                 ListaDeMensagens* lista = perfilLogado->getMensagensRecebidas();
 
                 cout<< "Mensagens Recebidas" << endl;

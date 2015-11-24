@@ -17,8 +17,11 @@ Departamento::~Departamento()
 
 
 void Departamento::adicionadoPor(Perfil* contato){
+    /*
     this->contatos[this->nContatos] = contato;
     this->nContatos++;
+    */
+    this->contatos->push_back(contato);
 
     ostringstream oss;
     oss << this->getNome() << " adicionou você como contato";

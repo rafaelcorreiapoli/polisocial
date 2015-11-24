@@ -39,7 +39,7 @@
 	<string>
 	"Pessoa.h"
 
-1448260190 source:/home/rafa93br/c++/PoliSocial/main.cpp
+1448399519 source:/home/rafa93br/c++/PoliSocial/main.cpp
 	<iostream>
 	<string>
 	<typeinfo>
@@ -75,18 +75,19 @@
 1448258382 source:/home/rafa93br/c++/PoliSocial/src/Mensagem.cpp
 	"Mensagem.h"
 
-1448260660 source:/home/rafa93br/c++/PoliSocial/src/Pessoa.cpp
+1448399543 source:/home/rafa93br/c++/PoliSocial/src/Pessoa.cpp
 	"Pessoa.h"
 	"Functions.h"
 	<iostream>
 	<sstream>
 
-1448242802 /home/rafa93br/c++/PoliSocial/include/Perfil.h
+1448398328 /home/rafa93br/c++/PoliSocial/include/Perfil.h
 	<string>
+	<vector>
 	"Mensagem.h"
 	"ListaDeMensagens.h"
 
-1448260723 source:/home/rafa93br/c++/PoliSocial/src/Departamento.cpp
+1448399237 source:/home/rafa93br/c++/PoliSocial/src/Departamento.cpp
 	"Departamento.h"
 	"Pessoa.h"
 	<string>
@@ -97,7 +98,7 @@
 	"Perfil.h"
 	"Pessoa.h"
 
-1448258495 source:/home/rafa93br/c++/PoliSocial/src/Perfil.cpp
+1448399643 source:/home/rafa93br/c++/PoliSocial/src/Perfil.cpp
 	"Perfil.h"
 
 1448259842 /home/rafa93br/c++/PoliSocial/include/Functions.h

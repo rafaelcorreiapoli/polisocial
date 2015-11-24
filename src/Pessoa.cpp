@@ -31,10 +31,11 @@ string Pessoa::getPais(){
 void Pessoa::adiciona(Perfil *contato){
     std::ostringstream oss;
 
+    /*
     this->contatos[this->nContatos] = contato;
     this->nContatos++;
-
-
+    */
+    this->contatos->push_back(contato);
 
     if (ehDepartamento(contato)){
         contato->adicionadoPor(this);

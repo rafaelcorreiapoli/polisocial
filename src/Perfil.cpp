@@ -6,6 +6,7 @@ Perfil::Perfil(string nome)
     this->nContatos = 0;
     this->msgsEnviadas = new ListaDeMensagens();
     this->msgsRecebidas = new ListaDeMensagens();
+    this->contatos = new vector<Perfil*>;
 }
 
 Perfil::~Perfil()
@@ -19,12 +20,14 @@ string Perfil::getNome(){
 
 
 
+/*
 void Perfil::verContatos(){
     int i;
     for (i = 0; i < nContatos; i++){
         cout << contatos[i]->getNome() << endl;
     }
 }
+*/
 
 
 
@@ -34,7 +37,7 @@ void Perfil::envia(string texto, bool curtir){
 
     int i;
     for (i=0;i<nContatos;i++){
-        contatos[i]->recebe(m);
+        contatos->at(i)->recebe(m);
     }
 };
 

@@ -1,9 +1,14 @@
 #ifndef PERFIL_H
 #define PERFIL_H
 #include <string>
+#include <vector>
 #include "Mensagem.h"
 #include "ListaDeMensagens.h"
 using namespace std;
+
+
+// Imprime a lista de contatos a
+void verContatosAlcancaveis();
 
 class Perfil
 {
@@ -23,8 +28,10 @@ class Perfil
         ListaDeMensagens* getMensagensRecebidas();
         // Obtêm a lista ligada com as mensagens enviadas.
         ListaDeMensagens* getMensagensEnviadas();
-        // Imprime a lista de contatos diretos.
+        // REMOVER?
         void verContatos();
+        // retorna a lista de contatos de um perfil.
+        vector<Perfil*>* getContatos();
         // Imprime a lista de contatos alcançáveis.
         void verContatosAlcancaveis();
     protected:
@@ -32,7 +39,8 @@ class Perfil
         int nContatos;
         ListaDeMensagens *msgsEnviadas;
         ListaDeMensagens *msgsRecebidas;
-        Perfil *contatos[9];
+        vector<Perfil*>* contatos;
+        //Perfil *contatos[9];
     private:
 };
 
