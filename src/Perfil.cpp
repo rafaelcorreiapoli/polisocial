@@ -1,11 +1,11 @@
 #include "Perfil.h"
-
+#include "MensagemComCurtir.h"
 Perfil::Perfil(string nome)
 {
     this->nome = nome;
     this->nContatos = 0;
-    this->msgsEnviadas = new ListaDeMensagens();
-    this->msgsRecebidas = new ListaDeMensagens();
+    this->msgsEnviadas = new list<Mensagem*>;
+    this->msgsRecebidas = new list<Mensagem*>;
     this->contatos = new vector<Perfil*>;
 }
 
@@ -18,40 +18,48 @@ string Perfil::getNome(){
     return nome;
 }
 
-
-
-/*
-void Perfil::verContatos(){
-    int i;
-    for (i = 0; i < nContatos; i++){
-        cout << contatos[i]->getNome() << endl;
-    }
+void Perfil::setContatos(vector<Perfil*>* contatos) {
+    this->contatos = contatos;
 }
-*/
-
 
 
 void Perfil::envia(string texto, bool curtir){
-    Mensagem *m = new Mensagem(texto, curtir);
-    this->msgsEnviadas->pushFinal(m);
+    Mensagem *m;
 
+    if (curtir) {
+        //MensagemComCurtir* m = dynamic_cast<MensagemComCurtir *>(m);
+        m = new MensagemComCurtir(texto, this);
+    }else{
+        m = new Mensagem(texto, this);
+    }
+
+    this->msgsEnviadas->push_back(m);
+    vector<Perfil*>::iterator it;
+    for (it = this->contatos->begin(); it != this->contatos->end(); it++) {
+        (*it)->recebe(m);
+    }
+    /*
     int i;
     for (i=0;i<nContatos;i++){
         contatos->at(i)->recebe(m);
     }
+    */
 };
 
 void Perfil::recebe(Mensagem *m){
-    cout << "[" << this->getNome() <<"] recebendo mensagem..." <<endl;
-    this->msgsRecebidas->pushFinal(m);
+    this->msgsRecebidas->push_back(m);
 }
 
 
-ListaDeMensagens* Perfil::getMensagensRecebidas(){
+vector<Perfil*>* Perfil::getContatos(){
+    return this->contatos;
+}
+
+list<Mensagem*>* Perfil::getMensagensRecebidas(){
     return this->msgsRecebidas;
 }
 
-ListaDeMensagens* Perfil::getMensagensEnviadas(){
+list<Mensagem*>* Perfil::getMensagensEnviadas(){
     return this->msgsEnviadas;
 }
 

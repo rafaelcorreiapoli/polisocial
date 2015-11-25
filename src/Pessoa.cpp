@@ -1,10 +1,12 @@
 #include "Pessoa.h"
 #include "Functions.h"
+#include <vector>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 
-
+using namespace std;
 
 Pessoa::Pessoa(string nome, string dataDeNascimento, string pais) : Perfil(nome)
 {
@@ -29,14 +31,10 @@ string Pessoa::getPais(){
 }
 
 void Pessoa::adiciona(Perfil *contato){
-    std::ostringstream oss;
+    this->contatos->push_back(contato);
+    contato->adicionadoPor(this);
 
     /*
-    this->contatos[this->nContatos] = contato;
-    this->nContatos++;
-    */
-    this->contatos->push_back(contato);
-
     if (ehDepartamento(contato)){
         contato->adicionadoPor(this);
     }else { //apenas pessoas que são adicionadas recebem essa msg
@@ -44,15 +42,38 @@ void Pessoa::adiciona(Perfil *contato){
         Mensagem* m = new Mensagem(oss.str(), false);
         contato->recebe(m);
     }
+    */
 }
 
 void Pessoa::adicionadoPor(Perfil* contato){
-
+    std::ostringstream oss;
+    oss << contato->getNome() << " adicionou você como contato";
+    Mensagem* m = new Mensagem(oss.str(), false);
+    this->recebe(m);
 }
 
+bool Pessoa::remove(Perfil* contato) {
+    ostringstream oss;
+
+    vector<Perfil*>::iterator it = find(this->contatos->begin(), this->contatos->end(), contato);
+    if (it != this->contatos->end()) {
+        this->contatos->erase(it);
+
+        oss << this->getNome() << " removeu voce como contato";
+
+
+        Mensagem* m = new Mensagem(oss.str(), this);
+        (*it)->recebe(m);
+        return true;
+    }
+
+    return false;
+}
+
+
 void Pessoa::envia(string texto, Perfil* contato) {
-    Mensagem *m = new Mensagem(texto, true);  //msg privada sempre pode ser curtida
-    this->msgsEnviadas->pushFinal(m);
+    Mensagem *m = new Mensagem(texto, this);  //msg privada sempre pode ser curtida
+    this->msgsEnviadas->push_back(m);
     contato->recebe(m);
 };
 

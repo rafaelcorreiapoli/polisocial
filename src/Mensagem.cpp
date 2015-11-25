@@ -1,10 +1,9 @@
 #include "Mensagem.h"
 
-Mensagem::Mensagem(string texto, bool podeSerCurtida)
+Mensagem::Mensagem(string texto, Perfil* autor)
 {
     this->texto = texto;
-    this->likes = 0;
-    this->podeSerCurtida = podeSerCurtida;
+    this->autor = autor;
     return;
 }
 
@@ -13,3 +12,7 @@ Mensagem::~Mensagem()
     delete this;
     //dtor
 }
+
+string Mensagem::getTexto(){
+    return texto;
+};

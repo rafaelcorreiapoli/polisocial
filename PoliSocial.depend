@@ -39,31 +39,30 @@
 	<string>
 	"Pessoa.h"
 
-1448399519 source:/home/rafa93br/c++/PoliSocial/main.cpp
+1448421043 source:/home/rafa93br/c++/PoliSocial/main.cpp
 	<iostream>
 	<string>
 	<typeinfo>
+	<stdexcept>
 	"Pessoa.h"
 	"Departamento.h"
+	"MensagemComCurtir.h"
 	"Functions.h"
+	"PersistenciaDoPerfil.h"
 
-1448242575 /home/rafa93br/c++/PoliSocial/include/Pessoa.h
+1448400846 /home/rafa93br/c++/PoliSocial/include/Pessoa.h
 	"Mensagem.h"
 	"ListaDeMensagens.h"
 	"Perfil.h"
 	<string>
 
-1448259060 /home/rafa93br/c++/PoliSocial/include/Mensagem.h
+1448406290 /home/rafa93br/c++/PoliSocial/include/Mensagem.h
 	<string>
+	"Perfil.h"
 
-1441047559 /home/rafa93br/c++/PoliSocial/include/ListaDeMensagens.h
-	"Elemento.h"
-	"Mensagem.h"
-	<iostream>
+1448401804 /home/rafa93br/c++/PoliSocial/include/ListaDeMensagens.h
 
-1441042455 /home/rafa93br/c++/PoliSocial/include/Elemento.h
-	<cstddef>
-	"Mensagem.h"
+1448401796 /home/rafa93br/c++/PoliSocial/include/Elemento.h
 
 1441047506 source:/home/rafa93br/c++/PoliSocial/src/Elemento.cpp
 	"Elemento.h"
@@ -72,38 +71,67 @@
 	"ListaDeMensagens.h"
 	"Mensagem.h"
 
-1448258382 source:/home/rafa93br/c++/PoliSocial/src/Mensagem.cpp
+1448406304 source:/home/rafa93br/c++/PoliSocial/src/Mensagem.cpp
 	"Mensagem.h"
 
-1448399543 source:/home/rafa93br/c++/PoliSocial/src/Pessoa.cpp
+1448413600 source:/home/rafa93br/c++/PoliSocial/src/Pessoa.cpp
 	"Pessoa.h"
 	"Functions.h"
+	<vector>
 	<iostream>
 	<sstream>
+	<algorithm>
 
-1448398328 /home/rafa93br/c++/PoliSocial/include/Perfil.h
+1448402094 /home/rafa93br/c++/PoliSocial/include/Perfil.h
 	<string>
 	<vector>
+	<list>
 	"Mensagem.h"
-	"ListaDeMensagens.h"
 
-1448399237 source:/home/rafa93br/c++/PoliSocial/src/Departamento.cpp
+1448420552 source:/home/rafa93br/c++/PoliSocial/src/Departamento.cpp
 	"Departamento.h"
 	"Pessoa.h"
 	<string>
 	<sstream>
+	<list>
 
-1448247214 /home/rafa93br/c++/PoliSocial/include/Departamento.h
+1448400953 /home/rafa93br/c++/PoliSocial/include/Departamento.h
 	<string>
 	"Perfil.h"
 	"Pessoa.h"
 
-1448399643 source:/home/rafa93br/c++/PoliSocial/src/Perfil.cpp
+1448418283 source:/home/rafa93br/c++/PoliSocial/src/Perfil.cpp
 	"Perfil.h"
+	"MensagemComCurtir.h"
 
 1448259842 /home/rafa93br/c++/PoliSocial/include/Functions.h
 	<string>
 	"Perfil.h"
 	"Pessoa.h"
 	"Departamento.h"
+
+1448406430 source:/home/rafa93br/c++/PoliSocial/src/MensagemComCurtir.cpp
+	"MensagemComCurtir.h"
+
+1448406424 /home/rafa93br/c++/PoliSocial/include/MensagemComCurtir.h
+	<string>
+	"Perfil.h"
+
+1448423291 source:/home/rafa93br/c++/PoliSocial/src/PersistenciaDoPerfil.cpp
+	"PersistenciaDoPerfil.h"
+	<fstream>
+	<stdexcept>
+	<iostream>
+	<algorithm>
+	<string>
+	<sstream>
+	"Perfil.h"
+	"Pessoa.h"
+	"Departamento.h"
+	"Functions.h"
+
+1448414333 /home/rafa93br/c++/PoliSocial/include/PersistenciaDoPerfil.h
+	<string>
+	<vector>
+	"Perfil.h"
 

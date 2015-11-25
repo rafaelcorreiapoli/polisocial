@@ -9,8 +9,13 @@ class Departamento : public Perfil
 {
     public:
         Departamento(string nome, string site, Pessoa* responsavel);
+        // Deve ser usado apenas pela persistência
+        Departamento(string nome, string site);
+
         virtual ~Departamento();
         string getSite();
+        // Deve ser usado apenas pela persistência
+        void setResponsavel(Pessoa* responsavel);
         Pessoa* getResponsavel();
         // Redefine o método "recebe" para repassa-la ao responsável.
         // A mensagem recebida deve também ser adicionada às mensagens recebidas do

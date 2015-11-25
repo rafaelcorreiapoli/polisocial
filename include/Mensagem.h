@@ -1,34 +1,23 @@
 #ifndef MENSAGEM_H
 #define MENSAGEM_H
 #include <string>
+#include "Perfil.h"
 
 using namespace std;
 
+class Perfil;
 class Mensagem
 {
     public:
-        Mensagem(string texto, bool podeSerCurtida);
+        Mensagem(string texto, Perfil* autor);
         virtual ~Mensagem();
-        string getTexto(){
-            return texto;
-        };
-        void incLikes(){
-            if (this->podeCurtir()){
-                this->likes++;
-            }
-        }
-        int getLikes(){
-            return likes;
-        }
-        bool podeCurtir(){
-            return podeSerCurtida;
-        }
+        string getTexto();
+        Perfil* getAutor();
+
     protected:
     private:
         string texto;
-        int autor;
-        int likes;
-        bool podeSerCurtida;
+        Perfil* autor;
 };
 
 #endif // MENSAGEM_H
