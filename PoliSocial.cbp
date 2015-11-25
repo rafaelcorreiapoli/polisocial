@@ -35,18 +35,18 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Departamento.h" />
-		<Unit filename="include/Elemento.h" />
 		<Unit filename="include/Functions.h" />
-		<Unit filename="include/ListaDeMensagens.h" />
 		<Unit filename="include/Mensagem.h" />
+		<Unit filename="include/MensagemComCurtir.h" />
 		<Unit filename="include/Perfil.h" />
+		<Unit filename="include/PersistenciaDoPerfil.h" />
 		<Unit filename="include/Pessoa.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Departamento.cpp" />
-		<Unit filename="src/Elemento.cpp" />
-		<Unit filename="src/ListaDeMensagens.cpp" />
 		<Unit filename="src/Mensagem.cpp" />
+		<Unit filename="src/MensagemComCurtir.cpp" />
 		<Unit filename="src/Perfil.cpp" />
+		<Unit filename="src/PersistenciaDoPerfil.cpp" />
 		<Unit filename="src/Pessoa.cpp" />
 		<Extensions>
 			<code_completion />
