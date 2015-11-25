@@ -1,10 +1,14 @@
 #ifndef PERFIL_H
 #define PERFIL_H
+
 #include <string>
+#include <vector>
+#include <list>
 #include "Mensagem.h"
-#include "ListaDeMensagens.h"
+
 using namespace std;
 
+class Mensagem;
 class Perfil
 {
     public:
@@ -20,19 +24,23 @@ class Perfil
         // Recebe uma mensagem.
         virtual void recebe(Mensagem* m);
         // Obtêm a lista ligada com as mensagens recebidas.
-        ListaDeMensagens* getMensagensRecebidas();
+        list<Mensagem*>* getMensagensRecebidas();
         // Obtêm a lista ligada com as mensagens enviadas.
-        ListaDeMensagens* getMensagensEnviadas();
-        // Imprime a lista de contatos diretos.
-        void verContatos();
-        // Imprime a lista de contatos alcançáveis.
-        void verContatosAlcancaveis();
+        list<Mensagem*>* getMensagensEnviadas();
+        // Método que define os contatos do Perfil
+        // Deve ser usado apenas pela persistência
+        void setContatos(vector<Perfil*>* perfis);
+        // retorna a lista de contatos de um perfil.
+        vector<Perfil*>* getContatos();
+        // Retorna a lista de contatos alcançáveis.
+        vector<Perfil*>* getContatosAlcancaveis();
     protected:
         string nome;
         int nContatos;
-        ListaDeMensagens *msgsEnviadas;
-        ListaDeMensagens *msgsRecebidas;
-        Perfil *contatos[9];
+        list<Mensagem*> *msgsEnviadas;
+        list<Mensagem*> *msgsRecebidas;
+        vector<Perfil*> *contatos;
+        //Perfil *contatos[9];
     private:
 };
 

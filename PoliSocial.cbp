@@ -36,6 +36,7 @@
 		</Compiler>
 		<Unit filename="include/Departamento.h" />
 		<Unit filename="include/Elemento.h" />
+		<Unit filename="include/Functions.h" />
 		<Unit filename="include/ListaDeMensagens.h" />
 		<Unit filename="include/Mensagem.h" />
 		<Unit filename="include/Perfil.h" />

@@ -16,6 +16,9 @@ class Pessoa : public Perfil
         string getDataDeNascimento();
         // Adiciona o contato à lista de contatos da Pessoa
         void adiciona(Perfil *contato);
+        // Remove o contato da lista de contatos da Pessoa.
+        // Retorna true se foi possível remover ou false caso contrário.
+        bool remove(Perfil *contato);
         // Implementa o método adicionadoPor para adicionar uma mensagem à pessoa que
         // ela foi adicionada pelo contato
         virtual void adicionadoPor(Perfil *contato);
