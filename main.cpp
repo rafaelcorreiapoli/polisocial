@@ -47,7 +47,8 @@ int cmd;
 int currentUser;
 
 vector<Perfil*>* perfis = new vector<Perfil*>;
-PersistenciaDoPerfil* persistencia = new PersistenciaDoPerfil("data.txt");
+PersistenciaDoPerfil* persistencia;
+
 
 
 // FUNCOES DE APOIO-------------------------------------------------------
@@ -95,9 +96,14 @@ void printPerfis(vector<Perfil*>* perfis, bool indexado = true, string tipo = "A
     }
 }
 
+
 //----------_FIM FUNCOES DE APOIO-----------------------------------------
 int main()
 {
+    string nomeDoArquivo;
+    cout << "Nome do arquivo:";
+    getline(cin, nomeDoArquivo);
+    persistencia = new PersistenciaDoPerfil(nomeDoArquivo);
     perfis = persistencia->obter();
     do{
         switch(route){
@@ -135,11 +141,14 @@ int main()
                 if (opt != 0){
                     opt--;
 
-                    if (ehPessoa(perfis->at(opt)) || ehDepartamento(perfis->at(opt))){
-                        route = ROUTE_PROFILE;
-                        currentUser = opt;
-                    }else {
-                        cout << "Perfil invalido!" << endl;
+
+                    try{
+                        if (ehPessoa(perfis->at(opt)) || ehDepartamento(perfis->at(opt))){
+                            route = ROUTE_PROFILE;
+                            currentUser = opt;
+                        }
+                    } catch(const out_of_range err) {
+                        cout << "Out of range: " << err.what() << endl;
                     }
                 }else{
                     route = ROUTE_MAIN;
@@ -187,11 +196,15 @@ int main()
                 if (responsavelId != 0) {
                     responsavelId--;
 
-                    if ( ehPessoa( perfis->at(responsavelId))){
-                        responsavel = dynamic_cast<Pessoa *>(perfis->at(responsavelId));
-                        perfis->push_back(new Departamento(nome, site, responsavel));
-                    }else {
-                        cout << "Pessoa invalida" << endl;
+                    try{
+                        if ( ehPessoa( perfis->at(responsavelId))){
+                            responsavel = dynamic_cast<Pessoa *>(perfis->at(responsavelId));
+                            perfis->push_back(new Departamento(nome, site, responsavel));
+                        }else {
+                            cout << "Pessoa invalida" << endl;
+                        }
+                    } catch(const out_of_range err) {
+                        cout << "Out of range: " << err.what() << endl;
                     }
                 }else {
                     cout << "Cancelou criação de perfil" << endl;
@@ -229,7 +242,7 @@ int main()
                     cout << "------------" << endl;
 
                     cout << "Contatos: " << endl;
-                    //perfilLogado->verContatos();
+                    printPerfis(perfilLogado->getContatos(), false);
 
                     cout << "------------" << endl;
                     cout << "1) Ver mensagens enviadas" << endl;
@@ -257,7 +270,8 @@ int main()
                         route = ROUTE_SEND_MESSAGE;
                     break;
                     case 4:
-                        route = ROUTE_CONTATOS_ALCANCAVEIS;
+                        cout << "Nao deu tempo de fazer" << endl;
+                        route = ROUTE_MAIN;
                     break;
                     case 5:
                         if (ehPessoa(perfilLogado)) {
@@ -415,6 +429,22 @@ int main()
                 cout << "Digite o numero da mensagem para curtir ou 0 para voltar" << endl;
                 cin >> opt;
 
+                if (opt !=0 ){
+                    opt--;
+
+                    try {
+                        list<Mensagem*>::iterator itr = perfilLogado->getMensagensRecebidas()->begin();
+                        advance(itr,opt);
+
+                        if (ehMensagemComCurtir(*itr)){
+                            MensagemComCurtir *mcc = dynamic_cast<MensagemComCurtir*>(*itr);
+                            mcc->curtir();
+                        }
+                    } catch(const out_of_range err) {
+                        cout << "Out of range: " << err.what() << endl;
+                    }
+
+                }
                 route = ROUTE_PROFILE;
             break;}// ------------------- FIM MENSAGENS RECEBIDAS ------------------------------------------
         }
