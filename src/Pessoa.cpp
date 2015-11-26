@@ -73,6 +73,7 @@ bool Pessoa::remove(Perfil* contato) {
 
 void Pessoa::envia(string texto, Perfil* contato) {
     Mensagem *m = new Mensagem(texto, this);  //msg privada sempre pode ser curtida
+    cout << m->getAutor()->getNome();
     this->msgsEnviadas->push_back(m);
     contato->recebe(m);
 };

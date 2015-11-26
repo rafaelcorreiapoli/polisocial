@@ -74,6 +74,7 @@ void printMsgs(list<Mensagem*>* mensagens){
     for (it = mensagens->begin(); it != mensagens->end(); it++) {
         cout << distance(mensagens->begin(), it) + 1 << ") " << (*it)->getTexto();
         MensagemComCurtir* m = dynamic_cast<MensagemComCurtir*>((*it));
+        cout << " - de " << (*it)->getAutor()->getNome();
         if (m != NULL){
             cout << " (" << m->getCurtidas() << " curtidas)";
         }

@@ -16,3 +16,8 @@ Mensagem::~Mensagem()
 string Mensagem::getTexto(){
     return texto;
 };
+
+
+Perfil* Mensagem::getAutor() {
+    return this->autor;
+}
