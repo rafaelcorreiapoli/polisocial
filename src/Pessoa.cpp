@@ -48,7 +48,7 @@ void Pessoa::adiciona(Perfil *contato){
 void Pessoa::adicionadoPor(Perfil* contato){
     std::ostringstream oss;
     oss << contato->getNome() << " adicionou você como contato";
-    Mensagem* m = new Mensagem(oss.str(), false);
+    Mensagem* m = new Mensagem(oss.str(), contato);
     this->recebe(m);
 }
 
